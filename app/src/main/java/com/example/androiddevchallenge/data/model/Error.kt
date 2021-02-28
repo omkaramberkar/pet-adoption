@@ -13,27 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui.theme
+package com.example.androiddevchallenge.data.model
 
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.Composable
+import com.squareup.moshi.Json
 
-@Composable
-fun PetAdoptionTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
-) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
-
-    MaterialTheme(
-        colors = colors,
-        typography = typography,
-        shapes = shapes,
-        content = content
-    )
-}
+data class Example(
+    @Json(name = "type") val type: String? = null,
+    @Json(name = "status") val status: Int? = null,
+    @Json(name = "title") val title: String? = null,
+    @Json(name = "detail") val detail: String? = null,
+    @Json(name = "invalid-params") val invalidParams: List<InvalidParam>? = null,
+)

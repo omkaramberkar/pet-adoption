@@ -13,27 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui.theme
+package com.example.androiddevchallenge.data.model
 
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.Composable
+import androidx.annotation.StringDef
+import com.example.androiddevchallenge.data.model.Sort.Companion.FARTHEST
+import com.example.androiddevchallenge.data.model.Sort.Companion.NEAREST
+import com.example.androiddevchallenge.data.model.Sort.Companion.OLDER
+import com.example.androiddevchallenge.data.model.Sort.Companion.RECENT
 
-@Composable
-fun PetAdoptionTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
-) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
+@StringDef(RECENT, OLDER, NEAREST, FARTHEST)
+annotation class Sort {
+    companion object {
+        const val RECENT = "recent"
+        const val OLDER = "-recent"
+        const val NEAREST = "distance"
+        const val FARTHEST = "-distance"
     }
-
-    MaterialTheme(
-        colors = colors,
-        typography = typography,
-        shapes = shapes,
-        content = content
-    )
 }

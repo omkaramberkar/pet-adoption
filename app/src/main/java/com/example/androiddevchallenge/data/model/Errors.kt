@@ -13,27 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui.theme
+package com.example.androiddevchallenge.data.model
 
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.Composable
-
-@Composable
-fun PetAdoptionTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
-) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
-
-    MaterialTheme(
-        colors = colors,
-        typography = typography,
-        shapes = shapes,
-        content = content
-    )
+sealed class Errors(code: Int) {
+    data class AccessDeniedDueToInvalidToken(val code: Int = 401) : Errors(code)
+    data class AccessDeniedDueToInsufficientAccess(val code: Int = 403) : Errors(code)
+    data class ResourceNotFound(val code: Int = 404) : Errors(code)
+    data class RequestRanIntoUnexpectedError(val code: Int = 500) : Errors(code)
+    data class RequestHasMissingParameters(val code: Int = 1) : Errors(code)
+    data class RequestContainsInvalidParameters(val code: Int = 2) : Errors(code)
 }

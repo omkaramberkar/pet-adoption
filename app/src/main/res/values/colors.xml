@@ -10,6 +10,21 @@
   the License.
   -->
 <resources>
+    <color name="primaryColor">#d9a5b3</color>
+    <color name="primaryLightColor">#ffd7e5</color>
+    <color name="primaryDarkColor">#a77683</color>
+    <color name="primaryTextColor">#000000</color>
+
+    <color name="secondary1Color">#1868ae</color>
+    <color name="secondary1LightColor">#5b95e0</color>
+    <color name="secondary1DarkColor">#003e7e</color>
+    <color name="secondary1TextColor">#ffffff</color>
+
+    <color name="secondary2Color">#c6d7eb</color>
+    <color name="secondary2LightColor">#f9ffff</color>
+    <color name="secondary2DarkColor">#95a6b9</color>
+    <color name="secondary2TextColor">#000000</color>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

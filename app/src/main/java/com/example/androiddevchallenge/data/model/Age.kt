@@ -13,27 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui.theme
+package com.example.androiddevchallenge.data.model
 
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.Composable
+import androidx.annotation.StringDef
+import com.example.androiddevchallenge.data.model.Age.Companion.ADULT
+import com.example.androiddevchallenge.data.model.Age.Companion.BABY
+import com.example.androiddevchallenge.data.model.Age.Companion.SENIOR
+import com.example.androiddevchallenge.data.model.Age.Companion.YOUNG
 
-@Composable
-fun PetAdoptionTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
-) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
+@StringDef(BABY, YOUNG, ADULT, SENIOR)
+annotation class Age {
+    companion object {
+        const val BABY = "baby"
+        const val YOUNG = "young"
+        const val ADULT = "adult"
+        const val SENIOR = "senior"
     }
-
-    MaterialTheme(
-        colors = colors,
-        typography = typography,
-        shapes = shapes,
-        content = content
-    )
 }

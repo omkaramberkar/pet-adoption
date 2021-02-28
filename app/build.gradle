@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -14,6 +16,15 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        def addConstant = {constantName, constantValue ->
+            manifestPlaceholders += [ (constantName):constantValue]
+            buildConfigField "String", "${constantName}", "\"${constantValue}\""
+        }
+
+        addConstant("URL", "https://api.petfinder.com/v2/")
+        addConstant("CLIENT_ID", "DFIoYNGaOGUA2SBAfsgLyBvL2wkGABLNFC6hEdsIue6TeRgfCN")
+        addConstant("CLIENT_SECRET", "q6ntzkOEYCuqeOx61XdERFApW8zgXAVD3XmG526J")
     }
 
     signingConfigs {
@@ -44,7 +55,7 @@ android {
         compose true
 
         // Disable unused AGP features
-        buildConfig false
+        // buildConfig false
         aidl false
         renderScript false
         resValues false
@@ -73,6 +84,41 @@ dependencies {
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
     implementation "androidx.compose.ui:ui-tooling:$compose_version"
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0'
+
+    implementation "androidx.navigation:navigation-compose:1.0.0-alpha08"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+
+    // Accompanist
+    implementation 'dev.chrisbanes.accompanist:accompanist-coil:0.6.0'
+    implementation 'dev.chrisbanes.accompanist:accompanist-insets:0.6.0'
+
+    // Hilt
+    implementation 'com.google.dagger:hilt-android:2.32-alpha'
+    kapt 'com.google.dagger:hilt-android-compiler:2.32-alpha'
+    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha03'
+
+    // OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
+    // Moshi
+    implementation 'com.squareup.moshi:moshi-kotlin:1.11.0'
+    
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit-mock:2.9.0'
+
+    // Pref DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha07"
+
+    // Utils
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+//    // Coroutines
+//    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
+//    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'
 
     testImplementation 'junit:junit:4.13.2'
 
